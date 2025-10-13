@@ -1,3 +1,6 @@
 docker build -t debian-builder .
-docker run -it -v "$(pwd)":/src debian-builder
+docker run -it \
+  -v $HOME/.ssh:/home/builder/.ssh:ro \
+  -v $HOME/.gnupg:/home/builder/.gnupg:ro \
+  -v "$(pwd)":/src debian-builder
 
