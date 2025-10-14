@@ -22,8 +22,10 @@ RUN apt update && apt install -y \
     wget \
     curl \
     vim \
+    pkg-config \
     python3 \
-    python3-pip
+    python3-pip \
+    sbuild debootstrap schroot
 
 # Optional: add a user for building (recommended over root)
 RUN useradd -m builder && echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
