@@ -25,11 +25,16 @@ RUN apt update && apt install -y \
     pkg-config \
     python3 \
     python3-pip \
+    software-properties-common \
     sbuild debootstrap schroot
 
+RUN add-apt-repository ppa:frkle/rt-biomech && \
+    apt-get update && \
+    apt-get install -y libsimbody-dev libsimbody3.7
 # Optional: add a user for building (recommended over root)
 RUN useradd -m builder && echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN  sbuild-adduser builder
 USER builder
-WORKDIR /home/builder
+WORKDIR /src
 
 
