@@ -1,0 +1,18 @@
+Source: spdlog
+Section: devel
+Priority: optional
+Maintainer: fbk <frkle@hvl.no>
+Build-Depends: debhelper-compat (= 13), cmake
+Standards-Version: 4.6.0
+Homepage: https://github.com/gabime/spdlog
+Rules-Requires-Root: no
+
+Package: libspdlog1
+Architecture: any
+Depends: ${misc:Depends}
+Description: Very fast C++ logging library .
+
+Package: libspdlog-dev
+Architecture: any
+Depends: ${misc:Depends}, libfmt-dev (>= 8.0.1), catch2
+Description: Very fast, header only or compiled, C++ logging library .

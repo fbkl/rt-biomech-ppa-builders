@@ -5,5 +5,8 @@
 	path = src/simbody
 	url = git@github.com:fbkl/simbody.git
 [submodule "src/Catch2"]
-	path = src/catch2-3.11.0
+	path = src/catch2
 	url = https://github.com/catchorg/Catch2.git
+[submodule "src/spdlog"]
+	path = src/spdlog
+	url = https://github.com/gabime/spdlog.git

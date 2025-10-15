@@ -1,0 +1,3 @@
+usr/include/spdlog/
+usr/lib/*/cmake/spdlog/
+usr/lib/*/pkgconfig/spdlog.pc
