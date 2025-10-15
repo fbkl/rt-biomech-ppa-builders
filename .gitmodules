@@ -4,3 +4,6 @@
 [submodule "src/simbody"]
 	path = src/simbody
 	url = git@github.com:fbkl/simbody.git
+[submodule "src/Catch2"]
+	path = src/Catch2
+	url = https://github.com/catchorg/Catch2.git
