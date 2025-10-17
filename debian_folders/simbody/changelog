@@ -1,0 +1,7 @@
+simbody (3.7-1ubuntu1~jammy1) jammy; urgency=medium
+
+  * Initial release for Ubuntu 22.04 Jammy
+  * Fixed OpenGL build issues
+
+ -- FBK <frkle@hvl.no>  Mon, 14 Oct 2025 12:00:00 +0000
+

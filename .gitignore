@@ -1,0 +1,8 @@
+src/*.tar.xz
+src/*.tar.gz
+src/*.build
+src/*.buildinfo
+src/*.deb
+src/*.ddeb
+src/*.dsc
+src/*.changes

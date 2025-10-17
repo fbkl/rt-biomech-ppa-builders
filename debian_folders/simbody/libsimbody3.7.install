@@ -1,0 +1,3 @@
+usr/libexec/simbody/*
+usr/lib/*/libSimTK*.so.*
+

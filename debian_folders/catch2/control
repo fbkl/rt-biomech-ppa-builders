@@ -1,0 +1,14 @@
+Source: catch2
+Section: universe/devel
+Priority: optional
+Maintainer: fbk <frkle@hvl.no>
+Build-Depends: debhelper-compat (= 13), cmake
+Standards-Version: 4.6.0
+Homepage: https://github.com/catchorg/Catch2
+Rules-Requires-Root: no
+
+Package: catch2
+Architecture: any
+Depends: ${misc:Depends}
+Description: Unit testing framework for C++ .
+ Catch2 is mainly a unit testing framework for C++, but it also provides basic micro-benchmarking features, and simple BDD macros.

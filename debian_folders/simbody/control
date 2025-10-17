@@ -1,0 +1,25 @@
+Source: simbody
+Section: science
+Priority: optional
+Maintainer: FBK <frkle@hvl.no>
+Build-Depends: debhelper-compat (= 13), cmake, liblapack-dev, libblas-dev,
+               libgl1-mesa-dev, libglu1-mesa-dev, freeglut3-dev,
+               libxi-dev, libxmu-dev, pkg-config
+Standards-Version: 4.6.0
+Homepage: https://github.com/simbody/simbody
+
+Package: libsimbody3.7
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, freeglut3, libblas3 | libblas.so.3, libgl1, libglu1-mesa | libglu1, liblapack3 | liblapack.so.3
+Suggests: simbody-visualizer-deps
+# Visualizer requires OpenGL-related packages; not listed as hard deps for now.
+# Will adjust based on user feedback.
+Description: Multibody dynamics C++ API (runtime)
+ Simbody is a C++ library for simulating articulated multibody systems.
+
+Package: libsimbody-dev
+Architecture: any
+Depends: libsimbody3.7 (= ${binary:Version}), ${misc:Depends}, freeglut3-dev, libxi-dev, libxmu-dev, liblapack-dev, pkg-config
+Description: Development files for Simbody
+ This package contains the headers and CMake configs needed to build against Simbody.
+

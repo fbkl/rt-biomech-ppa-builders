@@ -1,0 +1,5 @@
+usr/include/*
+usr/lib/*/cmake/*
+usr/lib/*/libSimTK*.so
+usr/lib/*/pkgconfig/simbody.pc
+usr/share/*

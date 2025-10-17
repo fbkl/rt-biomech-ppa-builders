@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --buildsystem=cmake --builddirectory=build
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF
+	
