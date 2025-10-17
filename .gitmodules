@@ -1,5 +1,5 @@
 [submodule "src/opensim-core"]
-	path = src/opensim-core
+	path = src/opensim_core
 	url = git@github.com:fbkl/opensim-core.git
 [submodule "src/simbody"]
 	path = src/simbody
