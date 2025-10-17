@@ -18,6 +18,7 @@ RUN add-apt-repository ppa:frkle/rt-biomech && \
     dh-make \
     libmetis-dev \
     libmumps-dev \
+    libspdlog1 \
     libspdlog-dev \
     lintian \
     debhelper-compat \

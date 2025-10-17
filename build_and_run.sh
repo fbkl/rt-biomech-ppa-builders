@@ -13,10 +13,12 @@ somevols() {
 		"$(pwd)" "$dep" "$dep" "$ver" \
 		"$(pwd)" "$dep" "$dep" "$ver"
 }
-
+xhost +
 docker run -it \
   -v $HOME/.ssh:/home/builder/.ssh:ro \
   -v $HOME/.gnupg:/home/builder/.gnupg:rw \
+  -v $(pwd)/src/test_simbody_install:/src/test_simbody \
+  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
   $(somevols simbody) \
   $(somevols catch2) \
   $(somevols opensim_core) \
