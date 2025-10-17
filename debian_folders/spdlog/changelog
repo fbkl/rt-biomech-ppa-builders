@@ -1,3 +1,9 @@
+spdlog (1:1.15.3-2ubuntu1~jammy) jammy; urgency=medium
+
+  * trying to get fPIC working...
+
+ -- fbk <frkle@hvl.no>  Fri, 17 Oct 2025 18:56:06 +0000
+
 spdlog (1:1.15.3-1ubuntu1~jammy) jammy; urgency=medium
 
   * Bumped epoch otherwise ubuntu will not know this is newer.
