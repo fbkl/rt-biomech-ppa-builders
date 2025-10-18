@@ -7,7 +7,15 @@
 #
 # @description : 
 ######################################################################
+DIR="src/opensim_core"
 
-git checkout .  && git apply ../../debian_folders/opensim_core/patches/*.patch
-rm OpenSim/Simulation/Model/ExponentialContactForce.*
+if pwd | grep -q "$DIR"; then
+  echo "You are in a subfolder of $DIR."
+  git reset --hard  
+  rm OpenSim/Simulation/Model/ExponentialContactForce.*
+  git apply ../../debian_folders/opensim_core/patches/*.patch
+else
+  echo "You are not in a subfolder of $DIR."
+fi
+exit
 

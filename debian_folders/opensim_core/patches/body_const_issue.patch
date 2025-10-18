@@ -1,0 +1,16 @@
+diff --git a/OpenSim/Simulation/SimbodyEngine/Body.cpp b/OpenSim/Simulation/SimbodyEngine/Body.cpp
+index 71dc8cd05..9e4d39cc0 100644
+--- a/OpenSim/Simulation/SimbodyEngine/Body.cpp
++++ b/OpenSim/Simulation/SimbodyEngine/Body.cpp
+@@ -180,10 +180,9 @@ void Body::setInertia(const SimTK::Inertia& inertia)
+     upd_inertia()[4] = I[0][2];
+     upd_inertia()[5] = I[1][2];
+ }
+-
+ SimTK::SpatialVec Body::calcMomentumAboutOrigin(const SimTK::State& s) const {
+     const SimTK::MobilizedBody& mobod = getMobilizedBody();
+-    return mobod.calcBodyMomentumAboutBodyOriginInGround(s);
++    return const_cast<SimTK::MobilizedBody&>(mobod).calcBodyMomentumAboutBodyOriginInGround(s);
+ }
+ 
+ SimTK::Vec3 Body::calcAngularMomentumAboutOrigin(const SimTK::State& s) const {
