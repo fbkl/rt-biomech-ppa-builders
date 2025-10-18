@@ -10,9 +10,11 @@ Rules-Requires-Root: no
 Package: libspdlog1
 Architecture: any
 Depends: ${misc:Depends}
-Description: Very fast C++ logging library .
+Description: Very fast C++ logging library
+ A very fast c++ logging library.
 
 Package: libspdlog-dev
 Architecture: any
 Depends: ${misc:Depends}, libfmt-dev (>= 8.0.1), catch2
-Description: Very fast, header only or compiled, C++ logging library .
+Description: Dev files for a very fast C++ logging library
+ The header and doc files for spdlog.

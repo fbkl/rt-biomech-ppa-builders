@@ -1,3 +1,9 @@
+spdlog (1:1.15.3-3ppa1~jammy1) jammy; urgency=medium
+
+  * fixing linter errors
+
+ -- fbk <frkle@hvl.no>  Sat, 18 Oct 2025 11:20:12 +0000
+
 spdlog (1:1.15.3-2ubuntu1~jammy) jammy; urgency=medium
 
   * trying to get fPIC working...
@@ -8,7 +14,7 @@ spdlog (1:1.15.3-1ubuntu1~jammy) jammy; urgency=medium
 
   * Bumped epoch otherwise ubuntu will not know this is newer.
 
- -- fbk <builder@91ad067bc828>  Fri, 17 Oct 2025 09:11:24 +0000
+ -- fbk <frkle@hvl.no>  Fri, 17 Oct 2025 09:11:24 +0000
 
 spdlog (1.15.3-1) jammy; urgency=medium
 
