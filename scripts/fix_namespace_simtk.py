@@ -24,6 +24,7 @@ SIMTK_TYPES = [
     "Vec<12>",
     "Vector",
     "RowVector",
+    "RowVector_",
     "Matrix",
     "State",
     "System",
@@ -34,6 +35,7 @@ SIMTK_TYPES = [
     "GeneralForceSubsystem",
     "Force",
     "MobilizedBody",
+    "MobilizedBodyIndex",
     "Body",
     "Inertia",
     "MultibodySystem",
@@ -44,7 +46,21 @@ SIMTK_TYPES = [
     "UnitVec3",
     "Quaternion",
     "RungeKuttaMersonIntegrator",
-    "Integrator"
+    "RungeKuttaFeldbergIntegrator",
+    "TimeStepper",
+    "Stage::Dynamics",
+    "Stage::Position",
+    "Stage::Model",
+    "Stage::Velocity",
+    "Stage::Acceleration",
+    "Stage::Report",
+    "Value",
+    "ReferencePtr",
+    "MassProperties",
+    "ForceIndex",
+    "Integrator",
+    "VectorView",
+    "Pi",
     # Add more types here as you discover them
 ]
 

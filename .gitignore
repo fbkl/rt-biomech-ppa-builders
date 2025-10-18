@@ -6,6 +6,12 @@ src/*.deb
 src/*.ddeb
 src/*.dsc
 src/*.changes
+src/*/debian
 debian_folders/*/tmp
 debian_folders/*/debhelper-build-stamp
+debian_folders/*/*.debhelper.log
+debian_folders/*/*.install
+debian_folders/*/*.substvars
+debian_folders/*/*/
 debian_folders/*/files
+debian_folders/*/.debhelper/
