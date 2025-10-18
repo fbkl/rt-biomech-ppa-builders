@@ -24,6 +24,7 @@ SIMTK_TYPES = [
     "Vec<12>",
     r'Vec<[0-9a-zA-Z]+>',
     "Vector",
+    "Vector_",
     "RowVector",
     "RowVector_",
     "Matrix",
