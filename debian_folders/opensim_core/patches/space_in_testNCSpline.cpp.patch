@@ -1,0 +1,13 @@
+diff --git a/OpenSim/Common/Test/testNCSpline.cpp b/OpenSim/Common/Test/testNCSpline.cpp
+index c88da31c6..557ad17b0 100644
+--- a/OpenSim/Common/Test/testNCSpline.cpp
++++ b/OpenSim/Common/Test/testNCSpline.cpp
+@@ -413,7 +413,7 @@ TEST_CASE("NC Spline")
+             yK(i,k) = tmp(k);
+ 
+     }
+-    SimTK:: Vector yKVal = yK(0);
++    SimTK::Vector yKVal = yK(0);
+ 
+     //Get the function y, dy, ddy at the mid points
+     for(int i=0; i<size-1;i++){

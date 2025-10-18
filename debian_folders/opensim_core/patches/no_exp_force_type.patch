@@ -1,0 +1,24 @@
+diff --git a/OpenSim/Simulation/RegisterTypes_osimSimulation.cpp b/OpenSim/Simulation/RegisterTypes_osimSimulation.cpp
+index 68a8f59e5..f04740494 100644
+--- a/OpenSim/Simulation/RegisterTypes_osimSimulation.cpp
++++ b/OpenSim/Simulation/RegisterTypes_osimSimulation.cpp
+@@ -47,7 +47,7 @@
+ #include "Model/CoordinateLimitForce.h"
+ #include "Model/CoordinateSet.h"
+ #include "Model/ElasticFoundationForce.h"
+-#include "Model/ExponentialContactForce.h"
++//#include "Model/ExponentialContactForce.h" ##TODO:newer simbody?
+ #include "Model/HuntCrossleyForce.h"
+ #include "Model/SmoothSphereHalfSpaceForce.h"
+ #include "Model/Ligament.h"
+@@ -251,8 +251,8 @@ OSIMSIMULATION_API void RegisterTypes_osimSimulation()
+     Object::registerType( ContactTorus() );
+     Object::registerType( CoordinateLimitForce() );
+     Object::registerType( SmoothSphereHalfSpaceForce() );
+-    Object::registerType( ExponentialContactForce() );
+-    Object::registerType( ExponentialContactForce::Parameters() );
++    //Object::registerType( ExponentialContactForce() ); TODO: newer simbody
++    //Object::registerType( ExponentialContactForce::Parameters() );
+     Object::registerType( HuntCrossleyForce() );
+     Object::registerType( ElasticFoundationForce() );
+     Object::registerType( HuntCrossleyForce::ContactParameters() );

@@ -13,5 +13,6 @@ debian_folders/*/*.debhelper.log
 debian_folders/*/*.install
 debian_folders/*/*.substvars
 debian_folders/*/*/
+!debian_folders/*/patches/
 debian_folders/*/files
 debian_folders/*/.debhelper/

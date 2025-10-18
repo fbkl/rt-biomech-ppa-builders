@@ -1,0 +1,22 @@
+diff --git a/OpenSim/Simulation/StatesDocument.cpp b/OpenSim/Simulation/StatesDocument.cpp
+index 432b856c6..0d5e545b6 100644
+--- a/OpenSim/Simulation/StatesDocument.cpp
++++ b/OpenSim/Simulation/StatesDocument.cpp
+@@ -48,7 +48,7 @@ struct SDocUtil {
+         varElt.setAttributeValue("type", type);
+ 
+         // Append the variable element
+-        varElt.setValueAs<SimTK::Array_<T>>(valArr, precision);
++        varElt.setValueAs<SimTK::Array_<T>>(valArr); //TODO: newer simbody?
+         parent.appendNode(varElt);
+     }
+     //_________________________________________________________________________
+@@ -223,7 +223,7 @@ void StatesDocument::formTimeElement(
+     }
+ 
+     // Set the text value on the element
+-    timeElt.setValueAs<SimTK::Array_<double>>(time, precision);
++    timeElt.setValueAs<SimTK::Array_<double>>(time); //TODO:newer simbody?
+ }
+ //_____________________________________________________________________________
+ // Supported continuous variable type (October 2024): double

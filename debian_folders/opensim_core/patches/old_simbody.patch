@@ -1,0 +1,15 @@
+diff --git a/OpenSim/Simulation/Model/Model.h b/OpenSim/Simulation/Model/Model.h
+index c11bffd11..3dec18c60 100644
+--- a/OpenSim/Simulation/Model/Model.h
++++ b/OpenSim/Simulation/Model/Model.h
+@@ -939,8 +939,8 @@ public:
+             const SimTK::Array_<SimTK::ForceIndex>& forceIndexes,
+             SimTK::Vector_<SimTK::SpatialVec>& bodyForces,
+             SimTK::Vector& mobilityForces) const {
+-        getForceSubsystem().calcForceContributionsSum(
+-            state, forceIndexes, bodyForces, mobilityForces);
++        //getForceSubsystem().calcForceContributionsSum(
++        //    state, forceIndexes, bodyForces, mobilityForces); //not available in this version of simbody
+     }
+ 
+     int getNumMuscleStates() const;
