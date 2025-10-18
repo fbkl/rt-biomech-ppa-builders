@@ -55,6 +55,8 @@ SIMTK_TYPES = [
     "Stage::Velocity",
     "Stage::Acceleration",
     "Stage::Report",
+    "Stage::Time",
+    "Stage",
     "Value",
     "ReferencePtr",
     "MassProperties",
@@ -66,6 +68,12 @@ SIMTK_TYPES = [
     "writeUnformatted",
     "[XYZ]Axis",
     "BodyOrSpaceType",
+    "Infinity",
+    "VectorView_",
+    "Subsystem",
+    "AbstractMeasure",
+    "Measure",
+    "Measure_",
     # Add more types here as you discover them
 ]
 

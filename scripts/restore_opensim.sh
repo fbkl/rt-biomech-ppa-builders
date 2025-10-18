@@ -8,6 +8,6 @@
 # @description : 
 ######################################################################
 
-git restore .  && git apply ../../debian_folders/opensim_core/patches/*.patch
-
+git checkout .  && git apply ../../debian_folders/opensim_core/patches/*.patch
+rm OpenSim/Simulation/Model/ExponentialContactForce.*
 
