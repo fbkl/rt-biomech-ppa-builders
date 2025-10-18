@@ -8,6 +8,6 @@
 # @description : 
 ######################################################################
 
-git restore .  && git apply ../../debian_folders/opensim_core/patches/space_in_testNCSpline.cpp.patch
+git restore .  && git apply ../../debian_folders/opensim_core/patches/*.patch
 
 

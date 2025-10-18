@@ -64,6 +64,8 @@ SIMTK_TYPES = [
     "Pi",
     "readUnformatted",
     "writeUnformatted",
+    "[XYZ]Axis",
+    "BodyOrSpaceType",
     # Add more types here as you discover them
 ]
 
