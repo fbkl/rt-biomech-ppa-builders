@@ -22,6 +22,7 @@ SIMTK_TYPES = [
     "Vec<10>",
     "Vec<11>",
     "Vec<12>",
+    r'Vec<[0-9a-zA-Z]+>',
     "Vector",
     "RowVector",
     "RowVector_",
@@ -61,6 +62,8 @@ SIMTK_TYPES = [
     "Integrator",
     "VectorView",
     "Pi",
+    "readUnformatted",
+    "writeUnformatted",
     # Add more types here as you discover them
 ]
 
@@ -68,6 +71,7 @@ FILE_EXTENSIONS = [".cpp", ".hpp", ".h", ".cc", ".cxx"]
 # ============================
 
 FILES_TO_EXAMINE = ["AbstractProperty.cpp"]
+FILES_TO_EXAMINE = ["testSerialization.cpp"]
 FILES_TO_EXAMINE = [""]
 
 def process_file(file_path):
@@ -98,21 +102,28 @@ def process_file(file_path):
         if "_" in simtk_type:
             trail_re = r'(?![a-zA-Z0-9])'
 
-        pattern = r'(?<!::)\b' + re.escape(simtk_type) + trail_re
-        replacement = f'SimTK::{simtk_type}'
+        pattern = r'(?<!::)\b' + simtk_type + trail_re
         empty_text = ''
         for a_line in content.split('\n'):
+            original_line = a_line
             if not '#include' in a_line:
-                empty_text += re.sub(pattern, replacement, a_line) + '\n'
+                for replacement_meat in re.findall(pattern,a_line):
+                    replacement = f'SimTK::{replacement_meat}'
+                    a_line = re.sub(pattern, replacement, a_line)
+                    if VERBOSE:
+                        print(pattern)
+                        print(replacement)
             else:
                 if simtk_type in a_line:
-                    print(f'\tskipped: {a_line[:10]}')
-                empty_text+=a_line + '\n'
+                    #print(f'\tskipped: {a_line[:10]}')
+                    pass ## this seems to be working fine, no need for adding a ton of lines to output
+            if VERBOSE and not a_line == original_line:
+                print(original_line)
+                print(a_line)
+            
+            empty_text+=a_line + '\n'
         #content = re.sub(pattern, replacement, content)
         content = empty_text
-        if VERBOSE:
-            print(pattern)
-            print(replacement)
         # Clean up any accidental double prefixes
         content = content.replace(f'SimTK::SimTK::{simtk_type}', f'SimTK::{simtk_type}')
     
