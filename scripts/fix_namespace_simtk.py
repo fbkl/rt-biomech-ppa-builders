@@ -76,6 +76,8 @@ SIMTK_TYPES = [
     "AbstractMeasure",
     "Measure",
     "Measure_",
+    "ConstrainedBodyIndex",
+    "Random",
     # Add more types here as you discover them
 ]
 
