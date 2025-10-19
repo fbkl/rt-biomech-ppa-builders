@@ -1,0 +1,20 @@
+diff --git a/OpenSim/Simulation/Test/testStatesDocument.cpp b/OpenSim/Simulation/Test/testStatesDocument.cpp
+index 386048e2c..5d2793479 100644
+--- a/OpenSim/Simulation/Test/testStatesDocument.cpp
++++ b/OpenSim/Simulation/Test/testStatesDocument.cpp
+@@ -355,7 +355,7 @@ value.
+ */
+ double
+ computeRoundingError(const double& value, int precision) {
+-    int p = clamp(1, precision, SimTK::LosslessNumDigitsReal);
++    int p = (int)clamp(1.0, (double)precision, SimTK::LosslessNumDigitsReal); //TODO: newer simbody?
+     SimTK::String valueStr(value, precision);
+     double valueDbl;
+     if(!valueStr.tryConvertToDouble(valueDbl))
+@@ -772,4 +772,4 @@ TEST_CASE("Exceptions")
+     }
+ 
+     delete model;
+-}
+\ No newline at end of file
++}
