@@ -1,5 +1,5 @@
 diff --git a/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp b/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp
-index 4b9121fce..cbc8139df 100644
+index 4b9121fce..10c619fff 100644
 --- a/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp
 +++ b/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp
 @@ -1164,10 +1164,10 @@ TEST_CASE("testScapulothoracicJoint") {
@@ -45,17 +45,34 @@ index 4b9121fce..cbc8139df 100644
              footMass.getInertia());
  
      pelvis->upd_frame_geometry().setColor(SimTK::Vec3(0, 1, 0)); // GREEN
-@@ -2200,10 +2200,10 @@ TEST_CASE("testAutomaticJointReversal") {
-     modelConstrained.updJointSet().remove(rix);
+@@ -2201,9 +2201,9 @@ TEST_CASE("testAutomaticJointReversal") {
      modelConstrained.finalizeFromProperties();
  
--    const Ground& cground = modelConstrained.getGround();
+     const Ground& cground = modelConstrained.getGround();
 -    const Body& cpelvis =
-+    const OpenSim::Ground& cground = modelConstrained.getGround();
-+    const OpenSim::BodyBody& cpelvis =
-             modelConstrained.getComponent<Body>("./bodyset/pelvis");
+-            modelConstrained.getComponent<Body>("./bodyset/pelvis");
 -    const Body& cfoot = modelConstrained.getComponent<Body>("./bodyset/foot");
-+    const OpenSim::BodyBody& cfoot = modelConstrained.getComponent<Body>("./bodyset/foot");
++    const OpenSim::Body& cpelvis =
++            modelConstrained.getComponent<OpenSim::Body>("./bodyset/pelvis");
++    const OpenSim::Body& cfoot = modelConstrained.getComponent<OpenSim::Body>("./bodyset/foot");
  
      // free the pelvis
      auto pelvisFree = new FreeJoint(
+@@ -2365,7 +2365,7 @@ TEST_CASE("testAutomaticLoopJointBreaker") {
+     model.addJoint(&hip);
+ 
+     // Add OpenSim shank via a knee joint
+-    Body shank("shank", tibiaMass.getMass(), tibiaMass.getMassCenter(),
++    OpenSim::Body shank("shank", tibiaMass.getMass(), tibiaMass.getMassCenter(),
+             tibiaMass.getInertia());
+ 
+     // Add the shank body to the model
+@@ -2382,7 +2382,7 @@ TEST_CASE("testAutomaticLoopJointBreaker") {
+     model.addJoint(&knee);
+ 
+     // Add foot body at ankle
+-    Body foot("foot", footMass.getMass(), footMass.getMassCenter(),
++    OpenSim::Body foot("foot", footMass.getMass(), footMass.getMassCenter(),
+             footMass.getInertia());
+ 
+     // Add foot
