@@ -1,0 +1,261 @@
+diff --git a/OpenSim/Simulation/Test/testContactGeometry.cpp b/OpenSim/Simulation/Test/testContactGeometry.cpp
+index 80b4284c6..df07eb0d4 100644
+--- a/OpenSim/Simulation/Test/testContactGeometry.cpp
++++ b/OpenSim/Simulation/Test/testContactGeometry.cpp
+@@ -62,7 +62,7 @@ namespace {
+         model->setGravity(gravity_vec);
+ 
+         // Add a Body representing the ball.
+-        Body ball;
++        OpenSim::Body ball;
+         ball.setName("ball");
+         ball.set_mass(mass);
+         ball.set_mass_center(SimTK::Vec3(0));
+@@ -188,7 +188,7 @@ namespace {
+         model->setGravity(gravity_vec);
+ 
+         // Add a Body for the ball.
+-        Body ball;
++        OpenSim::Body ball;
+         ball.setName("ball");
+         ball.setMass(mass);
+         ball.setMassCenter(SimTK::Vec3(0));
+@@ -378,7 +378,7 @@ namespace {
+         // For debugging: model.setUseVisualizer(true);
+ 
+         // Body and Joint.
+-        auto* point = new Body("point", mass, SimTK::Vec3(0),
++        auto* point = new OpenSim::Body("point", mass, SimTK::Vec3(0),
+                 SimTK::Inertia(1.0));
+         auto* hinge = new PinJoint("hinge",
+                 model.getGround(), SimTK::Vec3(0), SimTK::Vec3(0),
+@@ -421,17 +421,17 @@ namespace {
+ 
+             // Scaffolding for the ball.
+             const auto& point = model.getBodySet().get("point");
+-            auto* linkOffset = new Body("link_offset", 0, SimTK::Vec3(0),
++            auto* linkOffset = new OpenSim::Body("link_offset", 0, SimTK::Vec3(0),
+                     SimTK::Inertia(0.0));
+             auto* linkWeld = new WeldJoint("link_weld",
+                     point, SimTK::Vec3(0), SimTK::Vec3(0),
+-                    // Body is 0.5m to the right and 1m up.
++                    // OpenSim::Body is 0.5m to the right and 1m up.
+                     *linkOffset, SimTK::Vec3(-0.5, -1, 0), SimTK::Vec3(0));
+             model.addBody(linkOffset);
+             model.addJoint(linkWeld);
+ 
+             // Scaffolding for the platform.
+-            auto* platformOffset = new Body("platform_offset", 0,
++            auto* platformOffset = new OpenSim::Body("platform_offset", 0,
+                     SimTK::Vec3(0), SimTK::Inertia(0));
+             auto* platformWeld = new WeldJoint("platform_weld",
+                     model.getGround(), SimTK::Vec3(0), SimTK::Vec3(0),
+@@ -573,7 +573,7 @@ TEST_CASE("ContactEllipsoid") {
+ 
+     // Create a model with a single body and a FreeJoint.
+     Model model;
+-    Body* body = new Body("body", mass, SimTK::Vec3(0), SimTK::Inertia(1.0));
++    OpenSim::Body* body = new OpenSim::Body("body", mass, SimTK::Vec3(0), SimTK::Inertia(1.0));
+     FreeJoint* free = new FreeJoint("free",
+             model.getGround(), SimTK::Vec3(0), SimTK::Vec3(0),
+             *body, SimTK::Vec3(0), SimTK::Vec3(0));
+diff --git a/OpenSim/Simulation/Test/testForceProducer.cpp b/OpenSim/Simulation/Test/testForceProducer.cpp
+index 0c07915d9..756176ac9 100644
+--- a/OpenSim/Simulation/Test/testForceProducer.cpp
++++ b/OpenSim/Simulation/Test/testForceProducer.cpp
+@@ -387,7 +387,7 @@ TEST_CASE("ForceProducer (ExampleForceProducer)")
+ 
+         // step 1) build a model with "equivalent" `ForceProducer` and `Force` implementations
+         Model model;
+-        auto* body          = new Body{"body", 1.0, SimTK::Vec3{0.0}, SimTK::Inertia{1.0}};
++        auto* body          = new OpenSim::Body{"body", 1.0, SimTK::Vec3{0.0}, SimTK::Inertia{1.0}};
+         auto* joint         = new FreeJoint{"joint", model.getGround(), *body};
+         auto* force         = new MockForce{*body, joint->get_coordinates(0)};
+         auto* forceProducer = new MockForceProducer{*body, joint->get_coordinates(0)};
+@@ -425,7 +425,7 @@ TEST_CASE("ForceProducer (ExampleForceProducer)")
+         // should check when it wants to APPLY forces to the multibody system (i.e. during
+         // `ForceProducer::computeForce` override to satisfy the `OpenSim::Force` API)
+         Model model;
+-        auto* body          = new Body{"body", 1.0, SimTK::Vec3{0.0}, SimTK::Inertia{1.0}};
++        auto* body          = new OpenSim::Body{"body", 1.0, SimTK::Vec3{0.0}, SimTK::Inertia{1.0}};
+         auto* joint         = new FreeJoint{"joint", model.getGround(), *body};
+         auto* forceProducer = new MockForceProducer{*body, joint->get_coordinates(0)};
+         forceProducer->set_appliesForce(false);  // should disable force application
+diff --git a/OpenSim/Simulation/Test/testFrames.cpp b/OpenSim/Simulation/Test/testFrames.cpp
+index 480cd223c..2f434b9cb 100644
+--- a/OpenSim/Simulation/Test/testFrames.cpp
++++ b/OpenSim/Simulation/Test/testFrames.cpp
+@@ -360,7 +360,7 @@ TEST_CASE("PhysicalOffsetFrameOnPhysicalOffsetFrameOrder")
+ 
+     // Now attach them such that offsetFrameProximal is attached to rod2 of
+     // the pendulum and offsetFrameDistal is attached to offsetFrameProximal
+-    const Body& rod2 = pendulum.getComponent<Body>("./bodyset/rod2");
++    const OpenSim::Body& rod2 = pendulum.getComponent<OpenSim::Body>("./bodyset/rod2");
+     offsetFrameProximal->setParentFrame(rod2);
+     offsetFrameDistal->setParentFrame(*offsetFrameProximal);
+ 
+@@ -437,7 +437,7 @@ TEST_CASE("FilterByFrameType")
+ 
+     i = 0;
+     std::cout << "\nList all Bodies in the model." << std::endl;
+-    for (auto& component : pendulumWFrame->getComponentList<Body>()) {
++    for (auto& component : pendulumWFrame->getComponentList<OpenSim::Body>()) {
+         std::cout << "frame[" << ++i << "] is " << component.getName()
+             << " of type " << typeid(component).name() << std::endl;
+     }
+diff --git a/OpenSim/Simulation/Test/testInverseKinematicsSolver.cpp b/OpenSim/Simulation/Test/testInverseKinematicsSolver.cpp
+index 2d0f4a3e6..474f5145e 100644
+--- a/OpenSim/Simulation/Test/testInverseKinematicsSolver.cpp
++++ b/OpenSim/Simulation/Test/testInverseKinematicsSolver.cpp
+@@ -42,8 +42,8 @@ namespace {
+     Model* constructPendulumWithMarkers() {
+         Model* pendulum = new Model();
+         pendulum->setName("pendulum");
+-        Body* ball =
+-            new Body("ball", 1.0, SimTK::Vec3(0), SimTK::Inertia::sphere(0.05));
++        OpenSim::Body* ball =
++            new OpenSim::Body("ball", 1.0, SimTK::Vec3(0), SimTK::Inertia::sphere(0.05));
+         pendulum->addBody(ball);
+ 
+         // PinJoint hinge is 1m above ground origin and 1m above the ball in the 
+@@ -145,16 +145,16 @@ namespace {
+     {
+         std::unique_ptr<Model> leg{ new Model() };
+         leg->setName("leg");
+-        Body* thigh =
+-            new Body("thigh", 5.0, SimTK::Vec3(0),
++        OpenSim::Body* thigh =
++            new OpenSim::Body("thigh", 5.0, SimTK::Vec3(0),
+                     SimTK::Inertia::cylinderAlongY(0.1, 0.5) );
+         leg->addBody(thigh);
+-        Body* shank =
+-            new Body("shank", 2.0, SimTK::Vec3(0),
++        OpenSim::Body* shank =
++            new OpenSim::Body("shank", 2.0, SimTK::Vec3(0),
+                     SimTK::Inertia::cylinderAlongY(0.04, 0.4) );
+         leg->addBody(shank);
+-        Body* foot =
+-            new Body("foot", 1.0, SimTK::Vec3(0),
++        OpenSim::Body* foot =
++            new OpenSim::Body("foot", 1.0, SimTK::Vec3(0),
+                 SimTK::Inertia::cylinderAlongY(0.02, 0.1));
+         leg->addBody(foot);
+ 
+diff --git a/OpenSim/Simulation/Test/testManager.cpp b/OpenSim/Simulation/Test/testManager.cpp
+index df658d7d8..8ebe69839 100644
+--- a/OpenSim/Simulation/Test/testManager.cpp
++++ b/OpenSim/Simulation/Test/testManager.cpp
+@@ -42,7 +42,7 @@ namespace {
+         model.setName("ball");
+         model.setGravity(SimTK::Vec3(0, -9.81, 0));
+ 
+-        auto ball = new Body("ball", 0.7, SimTK::Vec3(0.1),
++        auto ball = new OpenSim::Body("ball", 0.7, SimTK::Vec3(0.1),
+             SimTK::Inertia::sphere(0.5));
+         model.addBody(ball);
+ 
+@@ -127,7 +127,7 @@ TEST_CASE("Station calculations with Manager") {
+     Model pendulum;
+     pendulum.setName("pendulum");
+ 
+-    auto rod = new Body("rod", 0.54321, SimTK::Vec3(0.1, 0.5, 0.2),
++    auto rod = new OpenSim::Body("rod", 0.54321, SimTK::Vec3(0.1, 0.5, 0.2),
+         SimTK::Inertia::cylinderAlongY(0.025, 0.55));
+     pendulum.addBody(rod);
+ 
+@@ -201,7 +201,7 @@ TEST_CASE("State changes between integration") {
+     Station* myStation = new Station();
+     const SimTK::Vec3 point(0);
+     myStation->set_location(point);
+-    myStation->setParentFrame(model.getComponent<Body>("/bodyset/ball"));
++    myStation->setParentFrame(model.getComponent<OpenSim::Body>("/bodyset/ball"));
+     model.addModelComponent(myStation);
+ 
+     SimTK::State& state = model.initSystem();
+diff --git a/OpenSim/Simulation/Test/testModelInterface.cpp b/OpenSim/Simulation/Test/testModelInterface.cpp
+index 150002150..434a1bea4 100644
+--- a/OpenSim/Simulation/Test/testModelInterface.cpp
++++ b/OpenSim/Simulation/Test/testModelInterface.cpp
+@@ -77,7 +77,7 @@ void testModelFinalizePropertiesAndConnections()
+         ASSERT(model.isObjectUpToDateWithProperties());
+ 
+         // make an edit through model's ComponentList access
+-        for (auto& body : model.updComponentList<Body>()) {
++        for (auto& body : model.updComponentList<OpenSim::Body>()) {
+             body.upd_mass_center() = SimTK::Vec3(0);
+             break;
+         }
+@@ -121,7 +121,7 @@ void testModelFinalizePropertiesAndConnections()
+         auto& sys = model.getSystem();
+ 
+         auto elbowInHumerus = new PhysicalOffsetFrame("elbow_in_humerus",
+-            model.getComponent<Body>("./bodyset/r_humerus"),
++            model.getComponent<OpenSim::Body>("./bodyset/r_humerus"),
+             SimTK::Transform(SimTK::Vec3(0, -0.33, 0)) );
+ 
+         model.addComponent(elbowInHumerus);
+@@ -167,7 +167,7 @@ void testModelTopologyErrors()
+ 
+     // create and offset for the elbow joint in the humerus
+     auto elbowInHumerus = new PhysicalOffsetFrame("elbow_in_humerus",
+-        model.getComponent<Body>("./bodyset/r_humerus"),
++        model.getComponent<OpenSim::Body>("./bodyset/r_humerus"),
+         SimTK::Transform(SimTK::Vec3(0, -0.33, 0)));
+ 
+     model.addComponent(elbowInHumerus);
+diff --git a/OpenSim/Simulation/Test/testMomentArms.cpp b/OpenSim/Simulation/Test/testMomentArms.cpp
+index ab9af5757..a8908698f 100644
+--- a/OpenSim/Simulation/Test/testMomentArms.cpp
++++ b/OpenSim/Simulation/Test/testMomentArms.cpp
+@@ -143,7 +143,7 @@ void testMomentArmsAcrossCompoundJoint()
+ {
+     Model model;
+ 
+-    Body* leg = new Body("leg", 10., SimTK::Vec3(0,1,0), SimTK::Inertia(1,1,1));
++    OpenSim::Body* leg = new OpenSim::Body("leg", 10., SimTK::Vec3(0,1,0), SimTK::Inertia(1,1,1));
+     model.addComponent(leg);
+ 
+     CompoundJoint* hip = new CompoundJoint("hip",
+diff --git a/OpenSim/Simulation/Test/testPoints.cpp b/OpenSim/Simulation/Test/testPoints.cpp
+index d54019e87..541d4ade7 100644
+--- a/OpenSim/Simulation/Test/testPoints.cpp
++++ b/OpenSim/Simulation/Test/testPoints.cpp
+@@ -140,7 +140,7 @@ void testStationOnOffsetFrame()
+     Model pendulum;
+     pendulum.setName("pendulum3D");
+ 
+-    auto rod1 = new Body("rod1", 0.54321, SimTK::Vec3(0.1, 0.5, 0.2),
++    auto rod1 = new OpenSim::Body("rod1", 0.54321, SimTK::Vec3(0.1, 0.5, 0.2),
+         SimTK::Inertia::cylinderAlongY(0.025, 0.55));
+     rod1->attachGeometry(new Cylinder(0.025, 0.55));
+ 
+diff --git a/OpenSim/Simulation/Test/testSimulationUtilities.cpp b/OpenSim/Simulation/Test/testSimulationUtilities.cpp
+index 4dc7cb895..925d76c03 100644
+--- a/OpenSim/Simulation/Test/testSimulationUtilities.cpp
++++ b/OpenSim/Simulation/Test/testSimulationUtilities.cpp
+@@ -50,7 +50,7 @@ void testSimulate() {
+     // Create a simple model consisting of an unconstrained ball.
+     Model model;
+     model.setGravity(Vec3(0, -gravity, 0));
+-    auto ball = new Body("ball", 1., Vec3(0), SimTK::Inertia::sphere(1.));
++    auto ball = new OpenSim::Body("ball", 1., Vec3(0), SimTK::Inertia::sphere(1.));
+     model.addBody(ball);
+     auto freeJoint = new FreeJoint("freeJoint", model.getGround(), *ball);
+     model.addJoint(freeJoint);
+diff --git a/OpenSim/Simulation/Test/testStationDefinedFrame.cpp b/OpenSim/Simulation/Test/testStationDefinedFrame.cpp
+index 88358d621..1b64ff314 100644
+--- a/OpenSim/Simulation/Test/testStationDefinedFrame.cpp
++++ b/OpenSim/Simulation/Test/testStationDefinedFrame.cpp
+@@ -69,10 +69,10 @@ namespace {
+     }
+ 
+     // helper: emplaces a `T` within `model`'s bodyset
+-    template<typename T = Body, typename... Args>
++    template<typename T = OpenSim::Body, typename... Args>
+     T& EmplaceBody(Model& model, Args&&... args)
+     {
+-        static_assert(std::is_base_of<Body, T>::value, "T must inherit from Body");
++        static_assert(std::is_base_of<OpenSim::Body, T>::value, "T must inherit from Body");
+         return EmplaceGeneric<T>(model, std::mem_fn(&Model::addBody), std::forward<Args>(args)...);
+     }
+ 

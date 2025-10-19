@@ -1,0 +1,71 @@
+diff --git a/OpenSim/Actuators/BodyActuator.cpp b/OpenSim/Actuators/BodyActuator.cpp
+index 17f87cee2..1c1098b9f 100644
+--- a/OpenSim/Actuators/BodyActuator.cpp
++++ b/OpenSim/Actuators/BodyActuator.cpp
+@@ -50,7 +50,7 @@ BodyActuator::BodyActuator()
+ /**
+ * Convenience constructor.
+ */
+-BodyActuator::BodyActuator(const Body& body, 
++BodyActuator::BodyActuator(const OpenSim::Body& body, 
+                            const SimTK::Vec3& point,
+                            bool pointIsGlobal,
+                            bool spatialForceIsGlobal)
+@@ -74,12 +74,12 @@ void BodyActuator::constructProperties()
+ 
+ void BodyActuator::setBodyName(const std::string& name)
+ {
+-    updSocket<Body>("body").setConnecteePath(name);
++    updSocket<OpenSim::Body>("body").setConnecteePath(name);
+ }
+ 
+ const std::string& BodyActuator::getBodyName() const
+ {
+-    return getSocket<Body>("body").getConnecteePath();
++    return getSocket<OpenSim::Body>("body").getConnecteePath();
+ }
+ 
+ //=============================================================================
+@@ -87,19 +87,19 @@ const std::string& BodyActuator::getBodyName() const
+ //=============================================================================
+ //_____________________________________________________________________________
+ /**
+-* Set the Body to which the BodyActuator is applied
++* Set the OpenSim::Body to which the BodyActuator is applied
+ */
+-void BodyActuator::setBody(const Body& body)
++void BodyActuator::setBody(const OpenSim::Body& body)
+ {
+     connectSocket_body(body);
+ }
+ 
+ /**
+-* Get the Body to which the BodyActuator is applied
++* Get the OpenSim::Body to which the BodyActuator is applied
+ */
+-const Body& BodyActuator::getBody() const
++const OpenSim::Body& BodyActuator::getBody() const
+ {
+-    return getConnectee<Body>("body");
++    return getConnectee<OpenSim::Body>("body");
+ }
+ 
+ //_____________________________________________________________________________
+@@ -110,7 +110,7 @@ const Body& BodyActuator::getBody() const
+ */
+ double BodyActuator::getPower(const SimTK::State& s) const
+ {
+-    const Body& body = getBody();
++    const OpenSim::Body& body = getBody();
+ 
+     const SimTK::MobilizedBody& body_mb = body.getMobilizedBody();
+     SimTK::SpatialVec bodySpatialVelocities = body_mb.getBodyVelocity(s);
+@@ -137,7 +137,7 @@ void BodyActuator::implProduceForces(const SimTK::State& s,
+ 
+     const bool spatialForceIsGlobal = getSpatialForceIsGlobal();
+ 
+-    const Body& body = getBody();
++    const OpenSim::Body& body = getBody();
+     // const SimTK::MobilizedBody& body_mb = body.getMobilizedBody();
+ 
+     Vec3 pointOfApplication = get_point(); 
