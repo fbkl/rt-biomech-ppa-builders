@@ -11,8 +11,9 @@ from pathlib import Path
 TARGET_DIR = "../src/opensim_core"  # Opensim core dir
 
 SIMTK_TYPES = [
-    "Vec3",
+    "Vec1",
     "Vec2",
+    "Vec3",
     "Vec4",
     "Vec5",
     "Vec6",
