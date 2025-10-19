@@ -85,6 +85,7 @@ SIMTK_TYPES = [
     "Array_",
     "SubsystemIndex",
     "DiscreteVariableIndex",
+    "DefaultSystemSubsystem",
     # Add more types here as you discover them
 ]
 
