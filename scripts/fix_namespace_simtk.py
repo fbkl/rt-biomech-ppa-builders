@@ -34,6 +34,7 @@ SIMTK_TYPES = [
     "Transform",
     "Rotation",
     "Real",
+    "Mat33",
     "SimbodyMatterSubsystem",
     "GeneralForceSubsystem",
     "BodyRotationSequence",
