@@ -1,0 +1,47 @@
+diff --git a/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp b/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp
+index 4b9121fce..700977c03 100644
+--- a/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp
++++ b/OpenSim/Simulation/SimbodyEngine/Test/testJoints.cpp
+@@ -1164,10 +1164,10 @@ TEST_CASE("testScapulothoracicJoint") {
+         Model m;
+         m.setName(__FUNCTION__);
+ 
+-        auto thorax = new Body{"thorax", femurMass.getMass(),
++        auto thorax = new OpenSim::Body{"thorax", femurMass.getMass(),
+                 femurMass.getMassCenter(), femurMass.getInertia()};
+ 
+-        auto scapula = new Body{"scapula", footMass.getMass(),
++        auto scapula = new OpenSim::Body{"scapula", footMass.getMass(),
+                 footMass.getMassCenter(), footMass.getInertia()};
+ 
+         m.addBody(thorax);
+@@ -2084,7 +2084,7 @@ TEST_CASE("testAddedFreeJointForBodyWithoutJoint") {
+ 
+     Model model;
+     SimTK::Inertia inertia(SimTK::Inertia::brick(SimTK::Vec3(0.5, 0.15, 0.2)));
+-    Body* block = new Body("block", 1.0, SimTK::Vec3(0.0), inertia);
++    OpenSim::Body* block = new OpenSim::Body("block", 1.0, SimTK::Vec3(0.0), inertia);
+     model.addBody(block);
+ 
+     model.initSystem();
+@@ -2115,16 +2115,16 @@ TEST_CASE("testAutomaticJointReversal") {
+     Ground& ground = model.updGround();
+     ground.upd_frame_geometry().setColor(SimTK::Vec3(1, 1, 0));
+ 
+-    auto pelvis = new Body("pelvis", 10.0, SimTK::Vec3(0),
++    auto pelvis = new OpenSim::Body("pelvis", 10.0, SimTK::Vec3(0),
+             SimTK::Inertia::brick(SimTK::Vec3(0.1, 0.15, 0.25)));
+ 
+-    auto thigh = new Body("thigh", femurMass.getMass(),
++    auto thigh = new OpenSim::Body("thigh", femurMass.getMass(),
+             femurMass.getMassCenter(), femurMass.getInertia());
+ 
+-    auto shank = new Body("shank", tibiaMass.getMass(),
++    auto shank = new OpenSim::Body("shank", tibiaMass.getMass(),
+             tibiaMass.getMassCenter(), tibiaMass.getInertia());
+ 
+-    auto foot = new Body("foot", footMass.getMass(), footMass.getMassCenter(),
++    auto foot = new OpenSim::Body("foot", footMass.getMass(), footMass.getMassCenter(),
+             footMass.getInertia());
+ 
+     pelvis->upd_frame_geometry().setColor(SimTK::Vec3(0, 1, 0)); // GREEN
