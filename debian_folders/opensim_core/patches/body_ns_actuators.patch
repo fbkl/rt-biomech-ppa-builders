@@ -7,7 +7,7 @@ index 17f87cee2..1c1098b9f 100644
  * Convenience constructor.
  */
 -BodyActuator::BodyActuator(const Body& body, 
-+BodyActuator::BodyActuator(const OpenSim::Body& body, 
++BodyActuator::BodyActuator(const OpenSim::Body& body,
                             const SimTK::Vec3& point,
                             bool pointIsGlobal,
                             bool spatialForceIsGlobal)
