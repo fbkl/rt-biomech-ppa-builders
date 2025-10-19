@@ -81,6 +81,10 @@ SIMTK_TYPES = [
     "Measure_",
     "ConstrainedBodyIndex",
     "Random",
+    "String",
+    "Array_",
+    "SubsystemIndex",
+    "DiscreteVariableIndex",
     # Add more types here as you discover them
 ]
 
