@@ -1,14 +1,17 @@
 #!/usr/bin/make -f
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_CMAKE_EXTRA_FLAGS = -DCMAKE_INSTALL_PREFIX=/usr \
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	-DCMAKE_INSTALL_PREFIX=/usr \
 	-DCMAKE_INSTALL_LIBDIR=lib/$(DEB_HOST_MULTIARCH) \
 	-DOPENSIM_COPY_DEPENDENCIES=OFF \
 	-DOPENSIM_DEPENDENCIES_DIR="" \
 	-DOPENSIM_WITH_CASADI=OFF \
 	-DOPENSIM_DEPENDENCIES_ABSDIR="" \
-	-DBUILD_TESTING=OFF
-
-%:
-	dh $@ --buildsystem=cmake
+	-DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF
 
