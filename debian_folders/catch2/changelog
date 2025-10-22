@@ -1,4 +1,9 @@
-catch2 (3.11.0-1) unstable; urgency=medium
+catch2 (3.11.0-1ppa2~jammy1) jammy; urgency=medium
+
+  * Bumped version number for triggering compilation in arm64 
+
+ -- fbk <frkle@hvl.no>  Wed, 21 Oct 2025 15:00:00 +0000
+catch2 (3.11.0-1) jammy; urgency=medium
 
   * Newer version of catch2 
 

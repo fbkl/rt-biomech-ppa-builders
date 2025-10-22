@@ -22,7 +22,7 @@
 
 	If everything works out, then stage 2 in a machine with gpg keys:
 
-	$ debuild -Sa -K<LONG-KEY>
+	$ debuild -S -sa -k<LONG-KEY>
 
 	Check key with:
 

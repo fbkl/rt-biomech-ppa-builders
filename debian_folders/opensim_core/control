@@ -2,13 +2,26 @@ Source: opensim
 Section: science
 Priority: optional
 Maintainer: fbk <frkle@hvl.no>
-Build-Depends: debhelper-compat (= 13), cmake
+Build-Depends: 
+ debhelper-compat (= 13),
+ cmake,
+ g++,
+ libsimbody-dev (>= 3.7-1ubuntu1~jammy1),
+ libspdlog-dev (>= 1:1.15.3-3ppa1~jammy1),
+ libspdlog1 (>= 1:1.15.3-3ppa1~jammy1),
+ catch2 (>= 3.11.0-1),
+ liblapack-dev,
+ libblas-dev,
+ libpthread-stubs0-dev,
+ pkg-config,
+ zlib1g-dev
 Standards-Version: 4.6.0
-Homepage: https://github.com/
+Homepage: https://opensim.stanford.edu/
 Rules-Requires-Root: no
 
 Package: opensim
 Architecture: any
-Depends: ${misc:Depends}
-Description: Musculoskeletal model simulator .
- Open-source musculoskeletal model simulator based on simbody.
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Musculoskeletal simulation toolkit 
+ Toolkit for modeling, simulation, and analysis of
+ musculoskeletal systems

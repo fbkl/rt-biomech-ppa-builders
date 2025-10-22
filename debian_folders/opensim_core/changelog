@@ -1,4 +1,29 @@
-opensim (4.5.2-1) unstable; urgency=medium
+opensim (4.5.2-1ppa1~jammy5) jammy; urgency=medium
+
+  * Trying better build variables setup to get it working on arm64.
+
+ -- fbk <builder@cfdf03306317>  Wed, 22 Oct 2025 09:39:38 +0000
+
+opensim (4.5.2-1ppa1~jammy4) jammy; urgency=medium
+
+  * Fixing missing dep libspdlog1 in control. 
+
+ -- fbk <builder@cfdf03306317>  Tue, 21 Oct 2025 17:03:58 +0000
+
+opensim (4.5.2-1ppa1~jammy3) jammy; urgency=medium
+
+  * Hope I can avoid the builder setting up the wrong flags at
+    dh_auto_configure and have to submit the job again...
+
+ -- fbk <frkle@hvl.no>  Tue, 21 Oct 2025 15:48:46 +0000
+
+opensim (4.5.2-1ppa1~jammy2) jammy; urgency=medium
+
+  * updated rules to use correct version of pthread
+
+ -- fbk <frkle@hvl.no>  Mon, 20 Oct 2025 13:59:23 +0000
+
+opensim (4.5.2-1ppa1~jammy1) jammy; urgency=medium
 
   * Initial package. 
 
