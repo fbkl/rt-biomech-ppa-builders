@@ -2,13 +2,13 @@ opensim (4.5.2-1ppa1~jammy5) jammy; urgency=medium
 
   * Trying better build variables setup to get it working on arm64.
 
- -- fbk <builder@cfdf03306317>  Wed, 22 Oct 2025 09:39:38 +0000
+ -- fbk <frkle@hvl.no>  Wed, 22 Oct 2025 09:39:38 +0000
 
 opensim (4.5.2-1ppa1~jammy4) jammy; urgency=medium
 
   * Fixing missing dep libspdlog1 in control. 
 
- -- fbk <builder@cfdf03306317>  Tue, 21 Oct 2025 17:03:58 +0000
+ -- fbk <frkle@hvl.no>  Tue, 21 Oct 2025 17:03:58 +0000
 
 opensim (4.5.2-1ppa1~jammy3) jammy; urgency=medium
 
