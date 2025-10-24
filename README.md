@@ -48,3 +48,12 @@ TODO: this would be better than the docker to test compilation, but it wasnt wor
 	$ sbuild -A -s -d jammy
 
 - Attention: there is a problem with spdlog doing funny template matching to everything and colliding with SimTK also doing template matching with everything. I am not great with templates and spdlog is wizard level cpp, i can't debug that. So i did the stupid thing which was putting namespaces in front of all the classes and removing all using namespace SimTK lines. This was a lot of work and i havent finished yet. THere is a script to partially automate it, but the hard parts are still manual and are relying on patches. Good luck updating this.
+
+# TODO:
+
+- right now there is a lot of stuff which isnt perfect. there are many lintian warnings and errors that need to be fixed on the packages
+- for the opensim package, maybe that is most important, if you want to have multiple versions installed, you may want to have the libraries have versions on them (why would you want that tho?)
+- maybe more importantly for size sake is that we want to separate dev files from opensim specially when the whole stuff is finally done (we want to have a complete interface in ros-opensimrt, so you wont need the dev files anymore if you just want to use it)
+- for that to work, we need to remove the required things from spdlog and simbody and make them private, idk.. i think simbody is always exposed in things like vec3. so target_link_library for spdlog should be marked PRIVATE and the find_package marked QUIET instead of REQUIRED, the same for catch2. simbody is different and should remain PUBLIC. we also need to make sure control reflects this. 
+
+
